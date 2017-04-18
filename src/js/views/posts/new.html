@@ -1,0 +1,8 @@
+<ul>
+  <li ng-repeat="post in postsIndex.all">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.image }}</p>
+    <p>{{ post.contents[0].body}}</p>
+    <h3>{{ post.user.username }}</h3>
+  </li>
+</ul>
