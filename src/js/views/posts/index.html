@@ -1,11 +1,10 @@
 <ul>
   <li ng-repeat="post in postsIndex.all">
-    <h2>{{ post.title }}</h2>
     <div class="photo">
-      <img ng-src="{{ post.image }}">
+      <a ui-sref="postsShow({ id: post.id })"><img ng-src="{{ post.image }}"></a>
     </div>
     <p ng-repeat="content in post.contents">{{ content.body }}</p>
-    <button ui-sref="postsShow({ id: post.id })">Show</button>
     <h3>{{ post.user.username }}</h3>
+    <!-- <button ui-sref="postsShow({ id: post.id })">Show</button> -->
   </li>
 </ul>

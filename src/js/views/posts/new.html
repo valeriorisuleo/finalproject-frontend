@@ -1,8 +1,31 @@
-<ul>
-  <li ng-repeat="post in postsIndex.all">
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.image }}</p>
-    <p>{{ post.contents[0].body}}</p>
-    <h3>{{ post.user.username }}</h3>
-  </li>
-</ul>
+<h1>New Post</h1>
+
+<form ng-submit="postsNew.create()">
+  <div class="form">
+
+    <label for="name">Title</label>
+    <input type="text" name="name" id="name" ng-model="postsNew.post.title">
+  </div>
+
+  <div>
+    <label>Body</label>
+    <textarea ng-model="postsNew.post.body"></textarea>
+  </div>
+
+  <div>
+    <label>Language</label>
+    <select ng-model="postsNew.post.language">
+      <option selected disabled value="">Pick a language</option>
+      <option ng-repeat="language in postsNew.languages" ng-value="language.code">
+        {{ language.name }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label for="image">Image href</label>
+    <input type="text" name="image" id="image" ng-model="postsNew.post.image">
+  </div>
+
+  <button>Update</button>
+</form>

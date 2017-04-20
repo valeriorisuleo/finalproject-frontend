@@ -4,18 +4,42 @@ angular
 
 Router.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 function Router($stateProvider, $urlRouterProvider, $locationProvider) {
+
   $locationProvider.html5Mode(true);
 
   $stateProvider
+
     .state('postsIndex', {
-      url: '/posts',
+      url: '/',
       templateUrl: 'js/views/posts/index.html',
       controller: 'PostsIndexCtrl as postsIndex'
+    })
+    .state('postsNew', {
+      url: '/new',
+      templateUrl: 'js/views/posts/new.html',
+      controller: 'PostsNewCtrl as postsNew'
     })
     .state('postsShow', {
       url: '/posts/:id',
       templateUrl: 'js/views/posts/show.html',
       controller: 'PostsShowCtrl as postsShow'
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'js/views/auth/login.html',
+      controller: 'LoginCtrl as login'
+    })
+    .state('register', {
+      url: '/register',
+      templateUrl: 'js/views/auth/register.html',
+      controller: 'LoginCtrl as register'
+    })
+    .state('postsContentsNew', {
+      url: '/posts/:id/content/new',
+      templateUrl: 'js/views/posts/contentsNew.html',
+      controller: 'PostsContentsNewCtrl as postsContentsNew'
     });
-  $urlRouterProvider.otherwise('/posts');
+
+
+  $urlRouterProvider.otherwise('/');
 }

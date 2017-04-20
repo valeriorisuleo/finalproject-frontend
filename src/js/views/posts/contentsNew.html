@@ -1,0 +1,26 @@
+<h1>New Content</h1>
+
+<form ng-submit="postsContentsNew.newContent()">
+  <div class="form">
+
+    <label for="name">Title</label>
+    <input type="text" name="name" id="name" ng-model="postsContentsNew.content.title">
+  </div>
+
+  <div>
+    <label>Body</label>
+    <textarea ng-model="postsContentsNew.content.body"></textarea>
+  </div>
+
+  <div>
+    <label>Language</label>
+    <select ng-model="postsContentsNew.content.language">
+      <option selected disabled value="">Pick a language</option>
+      <option ng-repeat="language in postsContentsNew.languages" ng-value="language.code">
+        {{ language.name }}
+      </option>
+    </select>
+  </div>
+
+  <button>New Content</button>
+</form>
