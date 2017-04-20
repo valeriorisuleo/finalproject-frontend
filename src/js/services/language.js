@@ -7,7 +7,7 @@ function Language() {
 
   this.all = [
     { code: 'en', name: 'English' },
-    { code: 'fr', name: 'Francais' },
+    { code: 'fr', name: 'Français' },
     { code: 'es', name: 'Español' },
     { code: 'it', name: 'Italiano' }
   ];

@@ -18,9 +18,6 @@ function PostsIndexCtrl(Post) {
 
   vm.all = Post.query();
   console.log(vm.all);
-
-// on button click, you want the JS to run a function that finds the language of e.g. "english" and filters the array of contents to include just that
-
 }
 
 PostsNewCtrl.$inject = ['Post', '$state', 'language'];
@@ -28,8 +25,6 @@ function PostsNewCtrl(Post, $state, language) {
   const vm = this;
   vm.post = { language: '' };
   vm.languages = language.all;
-
-// function create must take the content and push it into the array of the post and then create it maybe?
 
   function create(){
     // vm.post.user_id = 1;
@@ -41,13 +36,28 @@ function PostsNewCtrl(Post, $state, language) {
   vm.create = create;
 }
 
-PostsContentsNewCtrl.$inject = ['Content', '$stateParams','$state', 'language'];
-function PostsContentsNewCtrl(Content, $stateParams, $state, language) {
+PostsContentsNewCtrl.$inject = ['Content', 'Post', '$stateParams','$state', 'language'];
+function PostsContentsNewCtrl(Content, Post, $stateParams, $state, language) {
   const vm = this;
   vm.languages = language.all;
   vm.newContent = newContent;
+  // DROPDOWNLIST: A language should not be available if we have a already a content written with that lam
+  // Step 1. We inject 'Post' in the controller beacause we have no idea of what post we are talking about
+  // Step 2. We make a get request
+  vm.post = Post.get($stateParams);
 
   vm.content = { language: '' };
+
+  function checkLanguage(language){
+  // Step 3. We loop through the 'contents' to find 1,2,3... 'content'(cause as we know a post can have many contents)
+    return vm.post.contents.find((content)=>{
+      return content.language === language;
+    });
+  }
+
+  vm.checkLanguage = checkLanguage;
+
+// Step 4. --> views/posts/contentsNew
 
   function newContent() {
     vm.content.post_id = $stateParams.id;

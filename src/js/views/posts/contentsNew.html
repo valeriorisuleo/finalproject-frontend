@@ -16,11 +16,14 @@
     <label>Language</label>
     <select ng-model="postsContentsNew.content.language">
       <option selected disabled value="">Pick a language</option>
-      <option ng-repeat="language in postsContentsNew.languages" ng-value="language.code">
+      <option ng-repeat="language in postsContentsNew.languages" ng-value="language.code"
+       ng-if="postsContentsNew.post.$resolved && !postsContentsNew.checkLanguage(language.code)">
+       <!-- Step 4. -->
+       <!-- before the && we are saying that we are waiting for the answer coming back from the database, in our controller we made a get request -->
+       <!-- After the && we are saying if the language selected already exist do not show it in the dropdownlist -->
         {{ language.name }}
       </option>
     </select>
   </div>
-
   <button>New Content</button>
 </form>
