@@ -6,20 +6,17 @@ MainCtrl.$inject = ['$rootScope', '$state', '$auth', 'language'];
 function MainCtrl($rootScope, $state, $auth, language) {
   const vm = this;
   vm.isAuthenticated = $auth.isAuthenticated;
-
   vm.languages = language.all;
 
   function setLanguage(code) {
     return language.set(code);
   }
+  vm.setLanguage = setLanguage;
 
   function currentLanguage() {
     return language.get();
   }
-
   vm.currentLanguage = currentLanguage;
-
-  vm.setLanguage = setLanguage;
 
   $rootScope.$on('error', (e, err) => {
     vm.stateHasChanged = false;
@@ -48,6 +45,6 @@ function MainCtrl($rootScope, $state, $auth, language) {
     $auth.logout();
     $state.go('postsIndex');
   }
-
   vm.logout = logout;
+
 }

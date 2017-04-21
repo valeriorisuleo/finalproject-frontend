@@ -41,7 +41,7 @@ function PostsContentsNewCtrl(Content, Post, $stateParams, $state, language) {
   const vm = this;
   vm.languages = language.all;
   vm.newContent = newContent;
-  // DROPDOWNLIST: A language should not be available if we have a already a content written with that lam
+  // DROPDOWNLIST: A language should not be available if we have a already a content written with that language
   // Step 1. We inject 'Post' in the controller beacause we have no idea of what post we are talking about
   // Step 2. We make a get request
   vm.post = Post.get($stateParams);
@@ -73,7 +73,10 @@ function PostsContentsNewCtrl(Content, Post, $stateParams, $state, language) {
 PostsShowCtrl.$inject = ['Post', '$stateParams', 'language'];
 function PostsShowCtrl(Post, $stateParams, language) {
   const vm = this;
+
+  vm.currentLanguage = language.get();
   vm.post = Post.get($stateParams);
+
 
   function getTranslatedPost() {
     if(!vm.post.$resolved) return false;

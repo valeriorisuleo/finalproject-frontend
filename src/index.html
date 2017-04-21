@@ -23,7 +23,7 @@
 
           <ul class="nav navbar-nav">
             <li ng-if="main.currentLanguage() !== language.code" ng-repeat="language in main.languages">
-              <a href="#" ng-click="main.setLanguage(language.code)">{{ language.name }}</a>
+              <a href="#" ng-click="main.setLanguage(language.code); main.logging()">{{ language.name }}</a>
             </li>
           </ul>
         </div>

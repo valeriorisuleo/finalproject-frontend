@@ -1,4 +1,11 @@
-
-{{ postsShow.getTranslatedPost() }}
+<div>
+  <h1>getTranslated</h1>
+  <ul>
+    <li>Image - {{ postsShow.getTranslatedPost().image }}</li>
+    <li>Body - {{ postsShow.getTranslatedPost().content.body }}</li>
+    <li>Language - {{ postsShow.getTranslatedPost().content.language }}</li>
+    <li>Title - {{ postsShow.getTranslatedPost().content.title }}</li>
+  </ul>
+</div>
 
 <a ui-sref="postsContentsNew({ id: postsShow.post.id })">New Translation</a>

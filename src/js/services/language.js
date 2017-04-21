@@ -2,7 +2,8 @@ angular
   .module('project4')
   .service('language', Language);
 
-function Language() {
+Language.$inject = ['$rootScope'];
+function Language($rootScope) {
   let currentLanguage = 'en';
 
   this.all = [
@@ -20,6 +21,7 @@ function Language() {
   ];
 
   this.set = function setLanguage(code) {
+    $rootScope.$broadcast();
     currentLanguage = code;
   };
 
