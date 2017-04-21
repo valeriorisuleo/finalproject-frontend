@@ -38,6 +38,11 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/posts/:id/content/new',
       templateUrl: 'js/views/posts/contentsNew.html',
       controller: 'PostsContentsNewCtrl as postsContentsNew'
+    })
+    .state('postsContentsEdit', {
+      url: '/posts/:id/content/edit',
+      templateUrl: 'js/views/posts/contentsEdit.html',
+      controller: 'PostsContentsEditCtrl as postsContentsEdit'
     });
 
 

@@ -1,0 +1,15 @@
+<h1>Edit Content</h1>
+
+<form ng-submit="postsContentsEdit.contentUpdate()">
+  <div class="form">
+
+    <label for="name">Title</label>
+    <input type="text" name="name" id="name" ng-model="postsContentsEdit.post.content.title">
+  </div>
+
+  <div>
+    <label>Body</label>
+    <textarea ng-model="postsContentsEdit.post.content.body"></textarea>
+  </div>
+  <button>Update Content</button>
+</form>

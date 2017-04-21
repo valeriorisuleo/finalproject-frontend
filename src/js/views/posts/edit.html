@@ -1,0 +1,11 @@
+<h1>Edit Post</h1>
+
+<form ng-submit="postsEdit.update()">
+
+  <div>
+    <label for="image">Image href</label>
+    <input type="text" name="image" id="image" ng-model="postsEdit.post.image">
+  </div>
+
+  <button>Update</button>
+</form>

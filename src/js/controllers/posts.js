@@ -2,8 +2,10 @@ angular
 .module('project4')
 .controller('PostsIndexCtrl', PostsIndexCtrl)
 .controller('PostsNewCtrl', PostsNewCtrl)
+.controller('PostsShowCtrl', PostsShowCtrl)
 .controller('PostsContentsNewCtrl', PostsContentsNewCtrl)
-.controller('PostsShowCtrl', PostsShowCtrl);
+.controller('PostsContentsEditCtrl', PostsContentsEditCtrl);
+
 
 
 // PostsIndexCtrl.$inject = ['$http'];
@@ -69,6 +71,37 @@ function PostsContentsNewCtrl(Content, Post, $stateParams, $state, language) {
   }
   vm.newContent = newContent;
 }
+
+PostsContentsEditCtrl.$inject = ['Content', 'Post', '$stateParams','$state', 'language'];
+function PostsContentsEditCtrl(Content, Post, $stateParams, $state, language) {
+  const vm = this;
+
+  Post
+    .get($stateParams)
+    .$promise
+    .then((post) => {
+      vm.post = language.getPost(post);
+    });
+
+  // function postUpdate(){
+  //   Post
+  //   .update({id: vm.post.id, post: vm.post})
+  //   .$promise
+  //   .then(()=> $state.go('postsShow', {id: vm.post.id}));
+  //
+  // }
+  // vm.update = postUpdate;
+
+  function contentUpdate(){
+    Content
+      .update({id: vm.post.content.id, content: vm.post.content })
+      .$promise
+      .then(()=> $state.go('postsShow', { id: vm.post.id }));
+
+  }
+  vm.contentUpdate = contentUpdate;
+}
+
 
 PostsShowCtrl.$inject = ['Post', '$stateParams', 'language'];
 function PostsShowCtrl(Post, $stateParams, language) {
