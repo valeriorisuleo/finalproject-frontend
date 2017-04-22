@@ -103,13 +103,20 @@ function PostsContentsEditCtrl(Content, Post, $stateParams, $state, language) {
 }
 
 
-PostsShowCtrl.$inject = ['Post', '$stateParams', 'language'];
-function PostsShowCtrl(Post, $stateParams, language) {
+PostsShowCtrl.$inject = ['Post', '$stateParams', 'language', '$state'];
+function PostsShowCtrl(Post, $stateParams, language, $state) {
   const vm = this;
 
   vm.currentLanguage = language.get();
   vm.post = Post.get($stateParams);
 
+  function postsDelete() {
+    vm.post
+    .$remove()
+    .then(() => $state.go('postsIndex'));
+  }
+
+  vm.delete = postsDelete;
 
   function getTranslatedPost() {
     if(!vm.post.$resolved) return false;

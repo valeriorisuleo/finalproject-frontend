@@ -10,4 +10,12 @@
 
 <a ui-sref="postsContentsNew({ id: postsShow.post.id })">New Translation</a>
 
-<a ui-sref="postsContentsEdit({ id: postsShow.post.id })">Edit Translation</a>
+<!-- <a ui-sref="postsContentsEdit({ id: postsShow.post.id })">Edit Translation</a> -->
+
+
+<button ui-sref="postsContentsEdit({id: postsShow.post.id})" ng-if="main.isAuthenticated() && main.currentUser.id === postsShow.post.user.id">Edit</button>
+<button ng-click="postsShow.delete()" ng-if="main.isAuthenticated() && main.currentUser.id === postsShow.post.user.id">Delete</button>
+
+
+
+<!-- <button ng-click="postsShow.delete()">Delete</button> -->
