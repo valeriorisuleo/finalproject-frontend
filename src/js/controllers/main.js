@@ -30,7 +30,7 @@ function MainCtrl($rootScope, $state, $auth, language) {
     if($auth.getPayload()) vm.currentUser = $auth.getPayload();
   });
 
-  const protectedStates = ['postsNew'];
+  const protectedStates = ['postsNew', 'postsEdit'];
 
   $rootScope.$on('$stateChangeStart', (e, toState) => {
     if((!$auth.isAuthenticated() && protectedStates.includes(toState.name))) {

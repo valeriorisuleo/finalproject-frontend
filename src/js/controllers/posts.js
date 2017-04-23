@@ -3,6 +3,7 @@ angular
 .controller('PostsIndexCtrl', PostsIndexCtrl)
 .controller('PostsNewCtrl', PostsNewCtrl)
 .controller('PostsShowCtrl', PostsShowCtrl)
+.controller('PostsEditCtrl', PostsEditCtrl)
 .controller('PostsContentsNewCtrl', PostsContentsNewCtrl)
 .controller('PostsContentsEditCtrl', PostsContentsEditCtrl);
 
@@ -29,13 +30,27 @@ function PostsNewCtrl(Post, $state, language) {
   vm.languages = language.all;
 
   function create(){
-    // vm.post.user_id = 1;
     Post
-      .save(vm.post)
+      .save({ id: vm.post.id, post: vm.post })
       .$promise
       .then(() => $state.go('postsIndex'));
   }
   vm.create = create;
+}
+
+PostsEditCtrl.$inject = ['Post', '$state', '$stateParams'];
+function PostsEditCtrl(Post, $state, $stateParams) {
+  const vm = this;
+  vm.update = update;
+
+  Post.get($stateParams).$promise.then(post => vm.post = post);
+
+  function update() {
+    Post
+    .update({ id: vm.post.id, post: vm.post })
+    .$promise
+    .then(() => $state.go('postsShow', { id: vm.post.id }));
+  }
 }
 
 PostsContentsNewCtrl.$inject = ['Content', 'Post', '$stateParams','$state', 'language'];
@@ -83,14 +98,7 @@ function PostsContentsEditCtrl(Content, Post, $stateParams, $state, language) {
       vm.post = language.getPost(post);
     });
 
-  // function postUpdate(){
-  //   Post
-  //   .update({id: vm.post.id, post: vm.post})
-  //   .$promise
-  //   .then(()=> $state.go('postsShow', {id: vm.post.id}));
-  //
-  // }
-  // vm.update = postUpdate;
+
 
   function contentUpdate(){
     Content
@@ -100,11 +108,20 @@ function PostsContentsEditCtrl(Content, Post, $stateParams, $state, language) {
 
   }
   vm.contentUpdate = contentUpdate;
+
+  function checkLanguage(language){
+  // Step 3. We loop through the 'contents' to find 1,2,3... 'content'(cause as we know a post can have many contents)
+    return vm.post.contents.find((content)=>{
+      return content.language === language;
+    });
+  }
+
+  vm.checkLanguage = checkLanguage;
 }
 
 
-PostsShowCtrl.$inject = ['Post', '$stateParams', 'language', '$state'];
-function PostsShowCtrl(Post, $stateParams, language, $state) {
+PostsShowCtrl.$inject = ['Post', '$stateParams', 'language', '$state', 'Content'];
+function PostsShowCtrl(Post, $stateParams, language, $state, Content) {
   const vm = this;
 
   vm.currentLanguage = language.get();
@@ -124,5 +141,14 @@ function PostsShowCtrl(Post, $stateParams, language, $state) {
   }
 
   vm.getTranslatedPost = getTranslatedPost;
+
+  function contentDelete(){
+    Content
+    .remove({ id: vm.post.content.id })
+    .$promise
+    .then(()=> $state.reload());
+
+  }
+  vm.contentDelete = contentDelete;
 
 }

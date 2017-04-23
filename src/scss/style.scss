@@ -1,1 +1,148 @@
-// Import all of your scss files here
+@import 'bootstrap/bootstrap-grid';
+
+* {
+  box-sizing:border-box;
+}
+
+html {
+  font-size:18px;
+}
+
+.topbar {
+  background:#79B9D2;
+  color:white;
+  width:100%;
+  z-index:9999;
+  padding:5px 20px;
+  margin-bottom: 40px;
+
+  h1 {
+    cursor:pointer;
+  }
+
+  nav {
+    margin-top:25px;
+
+    ul {
+      padding:0px;
+      margin:0px;
+
+      li {
+        display:inline-block;
+        padding:10px;
+
+        a {
+          color:white;
+          text-decoration:none;
+        }
+      }
+    }
+  }
+}
+
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+
+  ul.post-grid {
+    margin:0;
+    padding:0;
+    // list-style-type:none;
+
+    li {
+      padding:20px;
+      cursor:pointer;
+      transition: background linear 0.5s;
+      border-bottom:1px solid grey;
+
+      &:hover {
+      background:grey;
+      color:white;
+
+        h3 {
+          color: white;
+        }
+
+      }
+    }
+  }
+
+
+.content {
+  width:100%;
+  position:relative;
+  padding:20px 40px 20px;
+}
+
+ h2, h3 {
+    color: grey;
+  }
+
+.post {
+  -webkit-transition:0.5s linear all;
+  transition:0.5s linear all;
+  opacity:1;
+  padding-bottom:30px;
+
+  cite {
+    display:inline-block;
+    padding:10px 0;
+  }
+}
+
+.post.ng-hide {
+  opacity:0;
+}
+
+.post.ng-hide-add, .post.ng-hide-remove {
+  display:block!important;
+}
+
+form {
+  width:100%;
+}
+input, textarea {
+  display:block;
+  width:100%;
+  padding:10px;
+  font-size:1.1em;
+}
+
+.ng-invalid.ng-dirty {
+  border-color:red;
+}
+
+.ng-valid.ng-dirty {
+  border-color:green;
+}
+
+img {
+  max-width:100%;
+}
+
+.blog-posts {
+  list-style: none;
+  li {
+    .post {
+      color: black;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid #79B9D2;
+      &:hover {
+        background: #79B9D2;
+        color: white;
+        cursor: pointer;
+      }
+      .photo {
+        background-size: cover;
+        background-position: center;
+        height: 100px;
+        width: 100px;
+      }
+    }
+  }
+}

@@ -1,10 +1,11 @@
-<ul>
-  <li ng-repeat="post in postsIndex.all">
-    <div class="photo">
-      <a ui-sref="postsShow({ id: post.id })"><img ng-src="{{ post.image }}"></a>
+<ul class="row blog-posts">
+  <li ng-repeat="post in postsIndex.all" class="col-md-4">
+    <div class="post" ui-sref="postsShow({ id: post.id })">
+      <div class="photo" style="background-image:url('{{ post.image_src }}')" ng-if="post.image_src"></div>
+      <h3>{{ post.contents[0].title }}</h3>
+      <h4>By {{ post.user.username }}</h4>
+      <p ng-repeat="content in post.contents | filter: { language: 'en' }" ng-bind-html="content.html_body | limitTo: 80"></p>
+      <!-- <button ui-sref="postsShow({ id: post.id })">Show</button> -->
     </div>
-    <p ng-repeat="content in post.contents">{{ content.body }}</p>
-    <h3>{{ post.user.username }}</h3>
-    <!-- <button ui-sref="postsShow({ id: post.id })">Show</button> -->
   </li>
 </ul>

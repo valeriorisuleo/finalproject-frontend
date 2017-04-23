@@ -24,6 +24,11 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'js/views/posts/show.html',
       controller: 'PostsShowCtrl as postsShow'
     })
+    .state('postsEdit', {
+      url: '/posts/:id/edit',
+      templateUrl: 'js/views/posts/edit.html',
+      controller: 'PostsEditCtrl as postsEdit'
+    })
     .state('login', {
       url: '/login',
       templateUrl: 'js/views/auth/login.html',

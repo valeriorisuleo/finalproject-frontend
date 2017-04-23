@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html ng-app="project4">
-  <head>
-    <base href="/">
-    <meta charset="utf-8">
-    <title>Angular Stack Setup</title>
-    <!-- inject:js -->
-    <!-- endinject -->
-    <!-- inject:css -->
-    <!-- endinject -->
-  </head>
-  <body ng-controller="MainCtrl as main">
-    <nav class="navbar navbar-inverse" role="navigation">
-      <div class="section-fluid">
-        <div class="navbar-header">
-          <ul class="nav navbar-nav">
-            <li><a class="navbar-brand" ui-sref="postsIndex">Home</a></li>
-            <li><a class="navbar-brand" ui-sref="postsNew">New</a></li>
-            <li ng-if="!main.isAuthenticated()"><a ui-sref="login">Login</a></li>
-            <li ng-if="!main.isAuthenticated()"><a ui-sref="register">Register</a></li>
-            <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" href="#">Logout</a></li>
-          </ul>
-
-          <ul class="nav navbar-nav">
-            <li ng-if="main.currentLanguage() !== language.code" ng-repeat="language in main.languages">
-              <a href="#" ng-click="main.setLanguage(language.code); main.logging()">{{ language.name }}</a>
-            </li>
-          </ul>
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <title>Angular Stack Setup</title>
+  <!-- inject:js -->
+  <!-- endinject -->
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
+<body ng-controller="MainCtrl as main">
+  <div class="topbar">
+    <div class="container">
+      <div class="row">
+        <div class="col-s-4">
+          <h1 ng-click="blog.selectTab('blog')" class="push-left">{{blog.title}}</h1>
+        </div>
+        <div class="offset-s-4 col-s-4">
+          <nav role='navigation' class="push-right">
+            <ul>
+              <li><a ui-sref="postsIndex">See All Posts</a></li>
+              <li><a ui-sref="postsNew">Add New Post</a></li>//
+              <li ng-if="!main.isAuthenticated()"><a ui-sref="register">Register</a></li>
+              <li ng-if="!main.isAuthenticated()"><a ui-sref="login">Login</a></li>
+              <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" href="#">Logout</a></li>
+              <!-- <li ng-if="main.currentLanguage() !== language.code" ng-repeat="language in main.languages">
+                <a href="#" ng-click="main.setLanguage(language.code); main.logging()">{{ language.name }}</a></li> -->
+            </ul>
+          </nav>
         </div>
       </div>
-    </nav>
-    <main ui-view></main>
-  </body>
+    </div>
+
+  </div>
+
+  <main ui-view class="container"></main>
+
+</body>
 </html>

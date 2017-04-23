@@ -3,8 +3,8 @@
 <form ng-submit="postsEdit.update()">
 
   <div>
-    <label for="image">Image href</label>
-    <input type="text" name="image" id="image" ng-model="postsEdit.post.image">
+    <label for="base64">Image</label>
+    <input base64 type="file" name="base64" id="base64" ng-model="postsEdit.post.base64">
   </div>
 
   <button>Update</button>

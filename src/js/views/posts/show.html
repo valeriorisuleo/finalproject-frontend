@@ -1,16 +1,19 @@
 <div>
   <h1>getTranslated</h1>
   <ul>
-    <li>Image - {{ postsShow.getTranslatedPost().image }}</li>
-    <li>Body - {{ postsShow.getTranslatedPost().content.body }}</li>
+    <li>Image - <img ng-src="{{postsShow.getTranslatedPost().image_src}}"></li>
+    <li ng-bind-html="postsShow.getTranslatedPost().content.html_body"></li>
     <li>Language - {{ postsShow.getTranslatedPost().content.language }}</li>
     <li>Title - {{ postsShow.getTranslatedPost().content.title }}</li>
+    <button ng-click="postsShow.contentDelete()" ng-if="postsShow.getTranslatedPost().content.id">Delete</button>
   </ul>
 </div>
 
 <a ui-sref="postsContentsNew({ id: postsShow.post.id })">New Translation</a>
 
-<!-- <a ui-sref="postsContentsEdit({ id: postsShow.post.id })">Edit Translation</a> -->
+<li ng-if="main.currentLanguage() !== language.code" ng-repeat="language in main.languages">
+  <a href="#" ng-click="main.setLanguage(language.code); main.logging()">{{ language.name }}</a></li>
+
 
 
 <button ui-sref="postsContentsEdit({id: postsShow.post.id})" ng-if="main.isAuthenticated() && main.currentUser.id === postsShow.post.user.id">Edit</button>
@@ -18,4 +21,8 @@
 
 
 
-<!-- <button ng-click="postsShow.delete()">Delete</button> -->
+
+<!-- <ul>
+  <li ng-repeat="content in postsShow.post.contents">{{ content.body }} - <strong>{{ content.user.username }}</strong><button ng-click="postsShow.deleteContent(content)">Azzo</button>
+  </li>
+</ul> -->

@@ -1,6 +1,36 @@
-<h1>New Post</h1>
+<h2>Add New Post</h2>
 
-<form ng-submit="postsNew.create()">
+
+  <div class="post">
+
+  <form name="postForm" ng-submit="postsNew.create()" novalidate>
+  <h4>Title</h4>
+    <input type="text" ng-model="postsNew.post.title"/>
+  <h4>Body</h4>
+  <textarea ng-model="postsNew.post.body" ng-list="/\n/" rows="10"></textarea>
+
+  <label>Language</label>
+  <select ng-model="postsNew.post.language">
+    <option selected disabled value="">Pick a language</option>
+    <option ng-repeat="language in postsNew.languages" ng-value="language.code">
+      {{ language.name }}
+    </option>
+  </select>
+
+  <label for="base64">Image</label>
+  <input base64 type="file" name="base64" id="base64" ng-model="postsNew.post.base64">
+
+  <button>Create</button>
+
+  </form>
+
+</div>
+
+
+
+
+
+<!-- <form ng-submit="postsNew.create()">
   <div class="form">
 
     <label for="name">Title</label>
@@ -23,9 +53,9 @@
   </div>
 
   <div>
-    <label for="image">Image href</label>
-    <input type="text" name="image" id="image" ng-model="postsNew.post.image">
+  <label for="base64">Image</label>
+    <input base64 type="file" name="base64" id="base64" ng-model="postsNew.post.base64">
   </div>
 
-  <button>Update</button>
-</form>
+  <button>Create</button>
+</form> -->
