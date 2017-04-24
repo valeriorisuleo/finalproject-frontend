@@ -1,5 +1,10 @@
 @import 'bootstrap/bootstrap-grid';
 
+
+
+
+
+
 * {
   box-sizing:border-box;
 }
@@ -7,6 +12,8 @@
 html {
   font-size:18px;
 }
+
+
 
 .topbar {
   background:#79B9D2;
@@ -145,4 +152,14 @@ img {
       }
     }
   }
+}
+
+select{
+  margin: 50px;
+  border: 1px solid #111;
+  width: 150px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  height: 34px;
 }

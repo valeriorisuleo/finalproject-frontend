@@ -3,16 +3,25 @@
 
   <div class="post">
 
-  <form name="postForm" ng-submit="postsNew.create()" novalidate>
+  <form ng-submit="postsNew.create()">
   <h4>Title</h4>
     <input type="text" ng-model="postsNew.post.title"/>
   <h4>Body</h4>
   <textarea ng-model="postsNew.post.body" ng-list="/\n/" rows="10"></textarea>
 
+  <!-- <div class="dropdown">
+    <button class="dropbtn">Pick a language</button>
+    <div class="dropdown-content">
+      <option  ng-model="postsNew.post.language" ng-repeat="language in postsNew.languages" ng-value="language.code" >
+        {{ language.name }}
+      </option>
+    </div>
+  </div> -->
+
   <label>Language</label>
   <select ng-model="postsNew.post.language">
     <option selected disabled value="">Pick a language</option>
-    <option ng-repeat="language in postsNew.languages" ng-value="language.code">
+    <option ng-repeat="language in postsNew.languages" ng-value="language.code" >
       {{ language.name }}
     </option>
   </select>
@@ -20,11 +29,42 @@
   <label for="base64">Image</label>
   <input base64 type="file" name="base64" id="base64" ng-model="postsNew.post.base64">
 
-  <button>Create</button>
+  <button>Update</button>
 
   </form>
 
 </div>
+
+
+
+<!-- <div class="dropdown">
+  <button class="dropbtn">Pick a language</button>
+  <div class="dropdown-content">
+    <option ng-repeat="language in postsNew.languages" ng-value="language.code" >
+      {{ language.name }}
+    </option>
+  </div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
