@@ -30,6 +30,7 @@ function PostsNewCtrl(Post, $state, language) {
   vm.languages = language.all;
 
   function create(){
+    console.log('about to create', vm.post);
     Post
       .save({ id: vm.post.id, post: vm.post })
       .$promise

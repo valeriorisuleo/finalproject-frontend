@@ -2,7 +2,7 @@
   <h1>getTranslated</h1>
   <ul>
     <li>Image - <img ng-src="{{postsShow.getTranslatedPost().image_src}}"></li>
-    <li ng-bind-html="postsShow.getTranslatedPost().content.html_body"></li>
+    <li ng-bind-html="postsShow.getTranslatedPost().content.html_body" class="body-text"></li>
     <li>Language - {{ postsShow.getTranslatedPost().content.language }}</li>
     <li>Title - {{ postsShow.getTranslatedPost().content.title }}</li>
     <button ng-click="postsShow.contentDelete()" ng-if="postsShow.getTranslatedPost().content.id">Delete</button>
